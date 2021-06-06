@@ -5,9 +5,11 @@ import { AppController } from './app.controller';
 
 //Modules
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 //Services
 import { AppService } from './app.service';
+
 
 
 
@@ -20,7 +22,8 @@ import { AppService } from './app.service';
       autoLoadEntities: true,
       synchronize: true,
     }),
-    UserModule
+    UserModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
