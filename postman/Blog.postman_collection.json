@@ -9,13 +9,62 @@
 			"name": "users",
 			"item": [
 				{
-					"name": "create",
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo5LCJuYW1lIjoiU2VyZ2V5IEFyb25vdiIsInVzZXJuYW1lIjoiU2VyZ2V5IiwiZW1haWwiOiJzZXJnZXlAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIn0sImlhdCI6MTYyNDU2MzI5MSwiZXhwIjoxNjI0NTczMjkxfQ.PDWIccKqW0Bfd1dxzh1nCZBVkOFnhGZ0xF-mZud7zTo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single User By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New User",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"David\",\r\n    \"username\": \"dvd\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Sergey Aronov\",\r\n    \"username\": \"Sergey\",\r\n    \"email\": \"sergey@gmail.com\",\r\n    \"password\": \"12345678\",\r\n    \"role\": \"admin\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -37,51 +86,12 @@
 					"response": []
 				},
 				{
-					"name": "findAll",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/users",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "findOne",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:3000/users/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"users",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "deleteOne",
+					"name": "Delete One",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/users/3",
+							"raw": "http://localhost:3000/users/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -89,14 +99,14 @@
 							"port": "3000",
 							"path": [
 								"users",
-								"3"
+								"7"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "updateOne",
+					"name": "Update One",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -125,13 +135,13 @@
 					"response": []
 				},
 				{
-					"name": "login",
+					"name": "Update Role",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"sergear\"\r\n}",
+							"raw": "{\r\n    \"role\": \"user\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -139,7 +149,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/users/2",
+							"raw": "http://localhost:3000/users/9/role",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -147,7 +157,37 @@
 							"port": "3000",
 							"path": [
 								"users",
-								"2"
+								"9",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sergey@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"users",
+								"login"
 							]
 						}
 					},
