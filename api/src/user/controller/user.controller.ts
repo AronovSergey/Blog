@@ -1,6 +1,7 @@
-import { Body, Controller, Param, Post, Get, Delete, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Param, Post, Get, Delete, Put, UseGuards, Query } from '@nestjs/common';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { Pagination } from 'nestjs-typeorm-paginate';
 import { User } from '../models/user.interface';
 import { UserService } from '../service/user.service';
 import { hasRoles } from 'src/auth/decorator/roles.decorator';
@@ -32,22 +33,23 @@ export class UserController {
 
     @Get(':id')
     findOne(@Param('id') id: string): Observable<User> {
-        return this.userService.findOne(Number(id))
+        return this.userService.findOne(Number(id));
     }
 
     @Get()
-    findAll(): Observable<User[]> {
-        return this.userService.findAll()
+    findAll(@Query('page') page: number = 1, @Query('limit') limit: number = 10): Observable<Pagination<User>> {
+        limit = limit > 100 ? 100 : limit;
+        return this.userService.paginate({ page: Number(page), limit: Number(limit), route: 'http://localhost:3000/users' });
     }
 
     @Delete(':id')
     deleteOne(@Param('id') id: string): Observable<User> {
-        return this.userService.deleteOne(Number(id))
+        return this.userService.deleteOne(Number(id));
     }
 
     @Put(':id')
     updateOne(@Param('id') id: string, @Body() user: User): Observable<any> {
-        return this.userService.updateOne(Number(id), user)
+        return this.userService.updateOne(Number(id), user);
     }
 
     @hasRoles(UserRole.ADMIN)
