@@ -11,7 +11,7 @@ Example of file:
     JWT_SECRET=jklasjdoij897231na
 
 ## Start the Backend in dev Mode after you added the .env file
-`cd api`  
+`cd backend`  
 `npm install`  
 `npm run start:dev`  
   
